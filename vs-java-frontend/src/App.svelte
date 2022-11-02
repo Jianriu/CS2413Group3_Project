@@ -9,11 +9,30 @@
 
 	}
 	loadData();
+
+    import {fade} from 'svelte/transition';
+    let signVisible = false;
+    let listpageVisible = false;
+
+    import FriendList from './friend_list.svelte';
 </script>
 
 <style>
-    /* Only for styling login*/
 
+/*General*/
+body{
+    font-family: fontello, 'Nanum Gothic', sans-serif, Arial;
+    background-color: white;
+}
+*{
+    box-sizing: border-box;
+}
+a:visited, a:link{
+    color: gray;
+    text-decoration: none;
+}
+
+/* Log in & Sign up */
 .login_body{
     background-color: #8B9D77;
 }
@@ -23,15 +42,8 @@
     -webkit-text-fill-color: white;
     margin-top: 12.75rem; 
 }
-
-/* border for left of the 2nd element */
-.setting_bar > *:nth-child(2){
-    border-left: 1px solid white;
-    padding-left: 0.625rem; /* browser fontSize 16px standard : 10px */
-}
-
-/* Outline of loginform */
-form[name="loginform"]{
+form{
+    /* Outline of loginform */
     display: flex;
     flex-direction: column;
     justify-content: flex-start; 
@@ -40,26 +52,20 @@ form[name="loginform"]{
     margin-top: 1.75rem;  
     margin-bottom: 1.875rem;  
 }
-
-/* specific design */
-form[name="loginform"] > *{
+form > *{
+    /* specific form design */
     width: 17.19rem;  
     height: 2.5rem;  
     font-size: 1rem;  
 }
-.id-pw, .loginbutton{
+.id-pw, .loginbutton, .newInfo, .signupbutton{
     border: 1px solid rgb(219, 219, 219);
 }
-.loginbutton, #login_form label{
+.loginbutton, #login_form label, .signupbutton, #signup_form label{
     margin-top: 0.3125rem; 
     color: #8B9D77;
 }
-.id-pw:focus::placeholder{
-    color: transparent;
-    /* When sign up button is clicked, remove placeholder */
-}
-
-/* sign up */
+/* sign up button */
 .signUp_account{
     display: flex;
     flex-direction: row;
@@ -68,21 +74,6 @@ form[name="loginform"] > *{
     align-items: center;
     color: white;
 }
-
-/* sign up style */
-.signUp_account{
-    margin-top: 3.25rem; 
-    font-size: 0.9125rem; 
-    -webkit-text-fill-color: white;
-}
-.signUp_account > *:last-child{
-    border-left: 1px solid white;
-    padding-left: 0.625rem; 
-}
-.signUp_account > *:first-child{
-    padding-right: 0.625rem; 
-}
-
 </style>
 
 <html lang="eng" data-dark="false">
@@ -94,13 +85,13 @@ form[name="loginform"] > *{
         <meta name="description" content="Simple Encrypt Chatting Login View">
         <meta name="keywords" content="Chatting, Encrypt, Login">
         <meta name="robots" content="noindex,nofollow">
-        <link rel="stylesheet" href="CSS/general.css">
-        <link rel="stylesheet" href="fontello/css/animation.css">
-        <link rel="stylesheet" href="fontello/css/fontello.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
     </head>
+
+    <!--FIRST PAGE-->
+    <!--IF DB confirmed users Open the Chat-->
+    {#if !listpageVisible}
     <body class="login_body">
+        {#if !signVisible}
         <div id="login_page">
             <header class="title_header">
                 <p>LOG IN</p>
@@ -113,10 +104,37 @@ form[name="loginform"] > *{
                 </form>
             </section>
         </div>
+        {/if}
         <div class="signUp">
             <section class="signUp_account">
-                <a href="sign_up.html" target="_blank">Sign up</a>
+                <label>
+                    <input type = "checkbox" bind:checked={signVisible}>
+                    SIGNUP
+                </label>
+                {#if signVisible}
+                    <div id="signup_page">
+                        <header class="title_header">
+                            <p>SIGN UP</p>
+                        </header>
+                        <section class="signup_form" id="signup_form">
+                            <form name="signupform" action="index.html" >
+                                <input type="text" class="new_info" name="name" alt="EnterName" placeholder="NAME" required>
+                                <input type="text" class="new_info" name="email" alt="EnterEmailS" placeholder="EMAIL" required>
+                                <input type="text" class="new_info" name="id" alt="EnterID" placeholder="ID" required>
+                                <input type="password" class="new_info" name="pwd" alt="EnterPW" placeholder="PASSWORD" required>
+                                <input type="submit" class="signupbutton" value="Enter" alt="signupBtn">
+                            </form>
+                        </section>
+                    </div>
+                {/if}
             </section>
         </div>
     </body>
+    {/if}
+    <!--Friend List PAGE-->
+    {#if listpageVisible}
+        <FriendList/>
+    {/if}
+
+
 </html>
