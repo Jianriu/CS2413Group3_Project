@@ -1,0 +1,79 @@
+body{
+    margin: 0;
+}
+
+/* grid container */
+#content{
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 5rem 1.25rem auto 1.25rem; 
+    grid-template-rows: 1.875rem 3.125rem auto 6.25rem;
+    gap: 0;
+    align-items: stretch;
+    /* justify-items: stretch; */
+    grid-template-areas:
+        "nav  .  setting  setting "
+        "nav  .   header     .    "
+        "nav  .    main      .    "
+        "ad  ad     ad      ad    ";
+}
+
+
+/* Header layout */
+header{
+    grid-area: header;
+    position: sticky;
+    top: 1.875rem; 
+    background-color: white;
+}
+header > *{
+    line-height: 3.125rem; 
+    vertical-align: middle;
+}
+
+/* contents style in header(add friends) */
+header span > a > *{
+    max-width: 3rem;
+    float: right;
+    margin-left: 0.9375rem;
+}
+
+h1{
+    font-size: 1.375rem; 
+    font-weight: bold;
+    display: inline;
+}
+
+/* navigation layout */
+nav{
+    grid-area: nav;
+    background-color: #8B9D77;
+    align-self: start;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    height: 100vh; 
+}
+
+/* Main layout */
+main{
+    /* Friend list (layout using flex box) */
+    grid-area: main; 
+    margin-left: 0.125rem;
+}
+li{
+    transition-property: all;
+    transition-duration: 1ms;
+    transition-timing-function: linear;
+    /* transition-delay: 0; */
+}
+li:hover{
+    background-color: rgb(244, 248, 253);
+}
+li:active{
+    /* transition-delay: 0; */
+    background-color: rgb(207, 226, 250);
+}
