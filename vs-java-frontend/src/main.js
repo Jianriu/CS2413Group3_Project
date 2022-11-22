@@ -6,6 +6,7 @@ const app = new App({
 		name: 'world'
 	}
 });
+
 // app.use((req,res,next) => {
 // 	res.header({"Access-Control-Allow-Origin": "*"});
 // })

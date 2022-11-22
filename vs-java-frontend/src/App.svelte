@@ -15,126 +15,96 @@
     let listpageVisible = false;
 
     import FriendList from './friend_list.svelte';
+    import SignUp from './sign_up.svelte';
+
 </script>
 
+
+<!--FIRST PAGE-->
+<!--IF DB confirmed users Open the Chat-->
+{#if !listpageVisible}
+<body class="login_body">
+    {#if !signVisible}
+    <div id="login_page">
+        <header class="title_header">
+            <p>LOG IN</p>
+        </header>
+        <section class="login_form" id="login_form">
+            <form name="loginform"  method="post">
+                <input type="text" class="id-pw" name="id" alt="EnterID" placeholder="ID" required>
+                <input type="password" class="id-pw" name="pwd" alt="EnterPW" placeholder="PASSWORD" required>
+                <!--connect to the db-->
+                <button on:click={() => listpageVisible = true}> Enter </button> 
+            </form>
+        </section>
+    </div>
+    {/if}
+    <div class="signUp">
+        <section class="signUp_account">
+            <label>
+                <input type = "checkbox" bind:checked={signVisible}>
+                SIGNUP
+            </label>
+            {#if signVisible}
+                <SignUp></SignUp>
+            {/if}
+        </section>
+    </div>
+</body>
+{/if}
+
+{#if listpageVisible}
+    <FriendList></FriendList>
+{/if}
+
+
 <style>
-
-/*General*/
-body{
-    font-family: fontello, 'Nanum Gothic', sans-serif, Arial;
-    background-color: white;
-}
-*{
-    box-sizing: border-box;
-}
-a:visited, a:link{
-    color: gray;
-    text-decoration: none;
-}
-
-/* Log in & Sign up */
-.login_body{
-    background-color: #8B9D77;
-}
-.title_header{
-    text-align: center;
-    font-size: 5rem;
-    -webkit-text-fill-color: white;
-    margin-top: 12.75rem; 
-}
-form{
-    /* Outline of loginform */
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; 
-    align-items: center;
-
-    margin-top: 1.75rem;  
-    margin-bottom: 1.875rem;  
-}
-form > *{
-    /* specific form design */
-    width: 17.19rem;  
-    height: 2.5rem;  
-    font-size: 1rem;  
-}
-.id-pw, .loginbutton, .newInfo, .signupbutton{
-    border: 1px solid rgb(219, 219, 219);
-}
-.loginbutton, #login_form label, .signupbutton, #signup_form label{
-    margin-top: 0.3125rem; 
-    color: #8B9D77;
-}
-/* sign up button */
-.signUp_account{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
-</style>
-
-<html lang="eng" data-dark="false">
-    <head>
-        <meta charset="utf-8">
-        <title>Simple Encrypt Chatting</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Simple Encrypt Chatting Login View">
-        <meta name="keywords" content="Chatting, Encrypt, Login">
-        <meta name="robots" content="noindex,nofollow">
-    </head>
-
-    <!--FIRST PAGE-->
-    <!--IF DB confirmed users Open the Chat-->
-    {#if !listpageVisible}
-    <body class="login_body">
-        {#if !signVisible}
-        <div id="login_page">
-            <header class="title_header">
-                <p>LOG IN</p>
-            </header>
-            <section class="login_form" id="login_form">
-                <form name="loginform" action="friend.html" method="post">
-                    <input type="text" class="id-pw" name="id" alt="EnterID" placeholder="ID" required>
-                    <input type="password" class="id-pw" name="pwd" alt="EnterPW" placeholder="PASSWORD" required>
-                    <input type="submit" class="loginbutton" value="Enter" alt="loginBtn">
-                </form>
-            </section>
-        </div>
-        {/if}
-        <div class="signUp">
-            <section class="signUp_account">
-                <label>
-                    <input type = "checkbox" bind:checked={signVisible}>
-                    SIGNUP
-                </label>
-                {#if signVisible}
-                    <div id="signup_page">
-                        <header class="title_header">
-                            <p>SIGN UP</p>
-                        </header>
-                        <section class="signup_form" id="signup_form">
-                            <form name="signupform" action="index.html" >
-                                <input type="text" class="new_info" name="name" alt="EnterName" placeholder="NAME" required>
-                                <input type="text" class="new_info" name="email" alt="EnterEmailS" placeholder="EMAIL" required>
-                                <input type="text" class="new_info" name="id" alt="EnterID" placeholder="ID" required>
-                                <input type="password" class="new_info" name="pwd" alt="EnterPW" placeholder="PASSWORD" required>
-                                <input type="submit" class="signupbutton" value="Enter" alt="signupBtn">
-                            </form>
-                        </section>
-                    </div>
-                {/if}
-            </section>
-        </div>
-    </body>
-    {/if}
-    <!--Friend List PAGE-->
-    {#if listpageVisible}
-        <FriendList/>
-    {/if}
-
-
-</html>
+    /*General*/
+    body{
+        font-family: fontello, 'Nanum Gothic', sans-serif, Arial;
+        background-color: white;
+    }
+    *{
+        box-sizing: border-box;
+    }
+    /* Log in & Sign up */
+    .login_body{
+        background-color: #8B9D77;
+    }
+    .title_header{
+        text-align: center;
+        font-size: 5rem;
+        -webkit-text-fill-color: white;
+        margin-top: 12.75rem; 
+    }
+    form{
+        /* Outline of loginform */
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; 
+        align-items: center;
+    
+        margin-top: 1.75rem;  
+        margin-bottom: 1.875rem;  
+    }
+    form > *{
+        /* specific form design */
+        width: 17.19rem;  
+        height: 2.5rem;  
+        font-size: 1rem;  
+    }
+    .id-pw{
+        border: 1px solid rgb(219, 219, 219);
+    }
+    
+    /* sign up button */
+    .signUp_account{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        color: white;
+    }
+    </style>
+    

@@ -1,3 +1,59 @@
+<body>
+    <div id="chat-body">
+        <!-- Chat profile -->
+        <header>
+            <img class="profile-img" src="./pic/default.png" alt="LeoDefault">
+            <div class="profile-col">
+                <span class="profile-name">Leo</span>
+            </div>
+        </header>
+        <main>                
+            <!-- Chat content -->
+            <div class="chat-content">
+                <!-- Date
+                <div class="date-line">
+                    <time datetime="2022-10-31"></time>
+                </div>
+                -->
+                <!-- chat -->
+                <div class="main-chat">
+                    <div class="friend-chat">
+                        <img class="profile-img" src="./pic/default.png" alt="LeoProfile">
+                        <div class="friend-chat-col">
+                            <span class="profile-name">Leo</span>
+                            <span class="balloon">Hello~ excuse me~</span>
+                            <span class="balloon">HII</span>
+                        </div>
+                        <time datetime="09:00:00+09:00">9:00 </time>
+                    </div>
+                    <div class="me-chat">        
+                        <div class="me-chat-col">
+                            <span class="balloon">hello </span>
+                        </div>
+                        <time datetime="09:30:00+09:00">9:30</time>
+                    </div>
+                    <div class="friend-chat">
+                        <img class="profile-img" src="./pic/default.png" alt="LeoProfile">
+                        <div class="friend-chat-col">
+                            <span class="profile-name">Leo</span>
+                            <span class="balloon">what are you doning~</span>
+                        </div>
+                        <time datetime="09:00:00+09:00">9:00 </time>
+                    </div>
+                </div>
+            </div>
+            <!-- Enter the chat -->
+            <div class="insert-content">
+                <form name="chatform" method="post">
+                    <textarea name="chat-insert" required></textarea>
+                    <input type="submit" class="chat-submit" value="SEND">
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+
+
 <style>
     /*only for chatting*/
 
@@ -217,72 +273,3 @@ form[name="chatform"] > textarea{
     color: rgb(248, 248, 248);
 }
 </style>
-
-<html lang="eng" data-dark="false">
-    <head>
-        <meta charset="utf-8">
-        <title>Simple Encrypt Chatting</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <meta http-equiv="X-UA-Compatible" content="IE-edge">
-        <meta name="description" content="Simple Encrypt Chatting">
-        <meta name="robotos" content="noindex, nofollow">
-        <link rel="stylesheet" href="CSS/general.css">
-        <link rel="stylesheet" href="fontello/css/fontello.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap">
-    </head>
-    <body>
-        <div id="chat-body">
-            <!-- Chat profile -->
-            <header>
-                <img class="profile-img" src="./pic/default.png" alt="LeoDefault">
-                <div class="profile-col">
-                    <span class="profile-name">Leo</span>
-                </div>
-            </header>
-            <main>                
-                <!-- Chat content -->
-                <div class="chat-content">
-                    <!-- Date
-                    <div class="date-line">
-                        <time datetime="2022-10-31"></time>
-                    </div>
-                    -->
-                    <!-- chat -->
-                    <div class="main-chat">
-                        <div class="friend-chat">
-                            <img class="profile-img" src="./pic/default.png" alt="LeoProfile">
-                            <div class="friend-chat-col">
-                                <span class="profile-name">Leo</span>
-                                <span class="balloon">Hello~ excuse me~</span>
-                                <span class="balloon">HII</span>
-                            </div>
-                            <time datetime="09:00:00+09:00">9:00 </time>
-                        </div>
-                        <div class="me-chat">        
-                            <div class="me-chat-col">
-                                <span class="balloon">hello </span>
-                            </div>
-                            <time datetime="09:30:00+09:00">9:30</time>
-                        </div>
-                        <div class="friend-chat">
-                            <img class="profile-img" src="./pic/default.png" alt="LeoProfile">
-                            <div class="friend-chat-col">
-                                <span class="profile-name">Leo</span>
-                                <span class="balloon">what are you doning~</span>
-                            </div>
-                            <time datetime="09:00:00+09:00">9:00 </time>
-                        </div>
-                    </div>
-                </div>
-                <!-- Enter the chat -->
-                <div class="insert-content">
-                    <form name="chatform" action="#" method="post">
-                        <textarea name="chat-insert" required></textarea>
-                        <input type="submit" class="chat-submit" value="SEND">
-                    </form>
-                </div>
-            </main>
-        </div>
-    </body>
-</html>
