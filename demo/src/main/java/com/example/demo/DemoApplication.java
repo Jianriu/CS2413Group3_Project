@@ -11,22 +11,27 @@ import java.sql.SQLException;
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		//Connects to the database
+		SpringApplication.run(DemoApplication.class, args);
+	}
+
+	//Creates the DB connection
+	public Connection initDatabase(){
 		String url = "jdbc:mysql://localhost:3306/CS2413";
 		String user = "root";
 		String password = "GRMT#1092";
+		Connection connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			try {
-				Connection connection = DriverManager.getConnection(url, user, password);
+				connection = DriverManager.getConnection(url, user, password);
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Connect success");
-		SpringApplication.run(DemoApplication.class, args);
+		System.out.println("Connect Success :D");
+		return connection;
 	}
 
 }
