@@ -1,136 +1,242 @@
-<style>
-/* Contents style in header => go to main-layout.css */
+<script>
+import AddList from './add_friend.svelte';
+import ChatRoom from './chat_room.svelte'
+let userimgsrc = "./vs-java-frontend/src/images/user.png";
+let addNewVis = false;
+let chatVis = false;
+</script>
 
-/* Contents style in nav => main-layout.cs */
-
-/* Contents style in main */
-main{
-    /* Layout of friend list is designed by flex box */
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-ul{
-    list-style: none;
-    padding-left: 0;
-    /* delete list-style(unordered list) */
-}
-
-/* resize of h2, p */
-.profile-title > *{
-    font-size: 0.75rem; /* 16px 브라우저 기준 12px 의미*/
-    color: gray;
-    display: inline-block;
-    margin: 0;
-}
-li{
-    /* my profiles are designed by flex box */
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: center;
-    padding-bottom: 0.4375rem;
-    padding-top: 0.4375rem;
-}
-li > img{
-    /* resize profile pic */
-    width: 3.125rem;
-}
-.profile > *{
-    /* control margin of name and profile pic */
-    margin: 0.3125rem; /* 5px (16px 브라우저 기준) */
-    margin-left: 0.625rem;
-}
-.profile > *:first-of-type{
-    /* change name style */
-    font-weight: bold;
-    font-size: 0.875rem; /* 16 브라우저 기준 14px */
-} 
-.profile-title{
-    border-top: 1px solid rgb(202, 200, 200);
-    padding-top: 0.625rem;
-}
-</style>
-
-<html lang="eng" data-dark="false">
-    <head>
-        <meta charset="utf-8">
-        <title>Simple Encrypt Chatting</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <meta http-equiv="X-UA-Compatible" content="IE-edge">
-        <meta name="description" content="Simple Encrypt Chatting Friend List View">
-        <meta name="keywords" content="Chatting, Encrypt, List">
-        <meta name="robotos" content="noindex, nofollow">
-        <link rel="stylesheet" href="CSS/main-layout.css">
-        <link rel="stylesheet" href="CSS/general.css">
-        <link rel="stylesheet" href="fontello/css/fontello.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <div id="content">
-            <!-- we should add newfriend button -->
-            <header>
-                <h1>FRIENDS</h1>
-                <span>
-                    <a href = add_user.html>
-                        <img src="./pic/add-user.png" alt="profilePic">
-                    </a>
-                </span>
-                
-            </header>
-            <!-- style-->
-            <nav>           
-            </nav>
-            <!-- Main -->
-            <main>
-                <!-- My Profile -->
-                <div>
-                    <ul>
-                        <li>
-                            <img src="./pic/me.png" alt="profilePic">
-                                <div class="profile">
-                                    <p>Hero</p>
-                                </div>
-                        </li>
-                    </ul>
+{#if !addNewVis & !chatVis}
+<body>
+    <div id="content">
+        <!-- we should add newfriend button -->
+        <header>
+            <h1>FRIENDS</h1>
+            <span>
+                <button on:click={() => addNewVis = !addNewVis}>  
+                    <img {userimgsrc} alt="addNew">
+                    <br>New Friend
+                </button> 
+            </span>
+            
+        </header>
+        <!-- style-->
+        <nav>           
+        </nav>
+        <!-- Main -->
+        <main>
+            <!-- My Profile -->
+            <div>
+                <ul>
+                    <li>
+                        <img src="/images/me.png" alt="MyprofilePic">
+                            <div class="profile">
+                                <p>Hero</p>
+                            </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Each profile Directly connec to chat room-->
+            <div>
+                <div class="profile-title">
+                    <h2>FRIENDS</h2>
                 </div>
-                <!-- Each profile Directly connec to chat room-->
-                <div>
-                    <div class="profile-title">
-                        <h2>FRIENDS</h2>
-                    </div>
-                    <ul>
+                <ul>
+                    <!--connect to the db-->
+                    <button on:click={() => chatVis = !chatVis}>
                         <li>
-                            <img src="./pic/default.png">
+                            <!-- svelte-ignore a11y-missing-attribute -->
+                            <img {userimgsrc}>
                             <div class="profile">
                                 <p>Ellie</p>
                             </div>
                         </li>
+                    </button>
+                    <button>
                         <li>
-                            <img src="./pic/default.png" >
+                            <!-- svelte-ignore a11y-missing-attribute -->
+                            <img {userimgsrc}>
                             <div class="profile">
                                 <p>Florence</p>
                             </div>
                         </li>
+                    </button>
+                    <button>
                         <li>
-                            <img src="./pic/default.png">
-                            <a href = chat_room.html>
-                                <div class="profile">
-                                    <p>Leo</p>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
-                            <img src="./pic/default.png">
+                            <!-- svelte-ignore a11y-missing-attribute -->
+                            <img {userimgsrc}>
                             <div class="profile">
-                                <p>Mama</p>
+                                <p>Kate</p>
                             </div>
                         </li>
-                    </ul>
-                </div>
-            </main>
-        </div>
-    </body>
-</html>
+                    </button>
+                    <button>
+                        <li>
+                            <!-- svelte-ignore a11y-missing-attribute -->
+                            <img {userimgsrc}>
+                            <div class="profile">
+                                <p>Halo</p>
+                            </div>
+                        </li>
+                    </button>
+                </ul>
+            </div>
+        </main>
+    </div>
+</body>
+{/if}
+{#if addNewVis}
+<AddList/>
+{/if}
+{#if chatVis}
+<ChatRoom></ChatRoom>
+{/if}
+
+<style>
+    /* Contents style in header => go to main-layout.css */
+    body{
+        font-family: fontello, 'Nanum Gothic', sans-serif, Arial;
+        background-color: white;
+    }
+    *{
+        box-sizing: border-box;
+    }
+    /* Contents style in nav => main-layout.cs */
+    body{
+        margin: 0;
+    }
+    
+    /* grid container */
+    #content{
+        top: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: 5rem 1.25rem auto 1.25rem; 
+        grid-template-rows: 1.875rem 3.125rem auto 6.25rem;
+        gap: 0;
+        align-items: stretch;
+        /* justify-items: stretch; */
+        grid-template-areas:
+            "nav  .  setting  setting "
+            "nav  .   header     .    "
+            "nav  .    main      .    "
+            "ad  ad     ad      ad    ";
+    }
+    
+    
+    /* Header layout */
+    header{
+        grid-area: header;
+        position: sticky;
+        top: 1.875rem; 
+        background-color: white;
+    }
+    header > *{
+        line-height: 3.125rem; 
+        vertical-align: middle;
+    }
+    
+    /* contents style in header(add friends) */
+    
+    header span > button{
+        width: 5rem;
+        float: right;
+        margin-left: 1rem;
+        left: 1px;
+        
+    }
+    
+    h1{
+        font-size: 1.375rem; 
+        font-weight: bold;
+        display: inline;
+    }
+    
+    /* navigation layout */
+    nav{
+        grid-area: nav;
+        background-color: #8B9D77;
+        align-self: start;
+        position: sticky;
+        top: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content:space-between;
+        height: 100vh; 
+    }
+    
+    /* Main layout */
+    main{
+        /* Friend list (layout using flex box) */
+        grid-area: main; 
+        margin-left: 0.125rem;
+    }
+    ul > button{
+        width: 500px;
+        background-color: transparent;
+        border-color: #b7cc9f;
+        border-width: 3px;
+    }
+    li{
+        transition-property: all;
+        transition-duration: 1ms;
+        transition-timing-function: linear;
+        /* transition-delay: 0; */
+    }
+    li:hover{
+        background-color: #f1fbe6;
+    }
+    li:active{
+        /* transition-delay: 0; */
+        background-color: #c9d2bf;
+    }
+    /* Contents style in main */
+    main{
+        /* Layout of friend list is designed by flex box */
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    ul{
+        list-style: none;
+        padding-left: 0;
+        /* delete list-style(unordered list) */
+    }
+    
+    /* resize of h2, p */
+    .profile-title > *{
+        font-size: 0.75rem; /* 16px 브라우저 기준 12px 의미*/
+        color: gray;
+        display: inline-block;
+        margin: 0;
+    }
+    li{
+        /* my profiles are designed by flex box */
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        padding-bottom: 0.4375rem;
+        padding-top: 0.4375rem;
+    }
+    li > img{
+        /* resize profile pic */
+        width: 3.125rem;
+    }
+    .profile > *{
+        /* control margin of name and profile pic */
+        margin: 0.3125rem; /* 5px (16px 브라우저 기준) */
+        margin-left: 0.625rem;
+    }
+    .profile > *:first-of-type{
+        /* change name style */
+        font-weight: bold;
+        font-size: 0.875rem; /* 16 브라우저 기준 14px */
+    } 
+    .profile-title{
+        border-top: 1px solid rgb(202, 200, 200);
+        padding-top: 0.625rem;
+    }
+    </style>
+    

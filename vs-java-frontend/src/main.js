@@ -7,4 +7,8 @@ const app = new App({
 	}
 });
 
+// app.use((req,res,next) => {
+// 	res.header({"Access-Control-Allow-Origin": "*"});
+// })
+
 export default app;

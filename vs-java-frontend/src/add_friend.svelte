@@ -1,8 +1,159 @@
+<script>
+    import FriendList from './friend_list.svelte';
+    
+    let userimgsrc = "./vs-java-frontend/src/images/user.png";
+    let friendVis = false;
+</script>
+
+{#if !friendVis}
+<body>
+    <div id="content">
+        <!-- we should add newfriend button -->
+        <header>
+            <button on:click={() => friendVis = !friendVis}>ᐸ FRIEND LIST</button>
+            <h1>ADD FRIENDS</h1>
+        </header>
+        <!-- style-->
+        <nav>           
+        </nav>
+        <!-- Main -->
+        <main>
+            <!-- My Profile -->
+            <div>
+                <ul>
+                    <li>
+                        <form name="searchingform" >
+                            <input type="text" class="new_friend" name="name" alt="EnterName" placeholder="NAME" required>
+                            <input type="submit" class="signupbutton" value="Enter" alt="signupBtn">
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            <!-- Each profile Directly connec to chat room-->
+            <div>
+                <div class="profile-title">
+                    <h2>VALID</h2>
+                </div>
+                <!--If there is valid users-->
+                <ul>
+                    <li>
+                        <button>
+                            <img src="./pic/default.png">
+                        <div class="profile">
+                            <p>Ellie</p>
+                        </div> 
+                        </button>
+                    </li>
+                    
+                </ul>
+            </div>
+        </main>
+    </div>
+</body>
+{/if}
+{#if friendVis}
+<FriendList></FriendList>
+{/if}
+
 <style>
-    /* Contents style in header => go to main-layout.css */
-
+body{
+    font-family: fontello, 'Nanum Gothic', sans-serif, Arial;
+    background-color: white;
+}
+*{
+    box-sizing: border-box;
+}
 /* Contents style in nav => main-layout.cs */
+body{
+    margin: 0;
+}
 
+/* grid container */
+#content{
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 5rem 1.25rem auto 1.25rem; 
+    grid-template-rows: 1.875rem 3.125rem auto 6.25rem;
+    gap: 0;
+    align-items: stretch;
+    /* justify-items: stretch; */
+    grid-template-areas:
+        "nav  .  setting  setting "
+        "nav  .   header     .    "
+        "nav  .    main      .    "
+        "ad  ad     ad      ad    ";
+}
+
+
+/* Header layout */
+header{
+    grid-area: header;
+    position: sticky;
+    top: 1.875rem; 
+    background-color: white;
+}
+header > *{
+    line-height: 3.125rem; 
+    vertical-align: middle;
+}
+
+/* contents style in header(add friends) */
+
+
+h1{
+    position: relative;
+    top: -50px;
+    left: +5px;
+    font-size: 1.375rem; 
+    font-weight: bold;
+    
+}
+
+header > button{
+    position: relative;
+    top: -30px;
+    height: 40px;
+    font-size: 0.8rem; 
+    font-weight: bold;
+    
+    color:grey;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+/* navigation layout */
+nav{
+    grid-area: nav;
+    background-color: #8B9D77;
+    align-self: start;
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    height: 100vh; 
+}
+
+/* Main layout */
+main{
+    /* Friend list (layout using flex box) */
+    grid-area: main; 
+    margin-left: 0.125rem;
+}
+li{
+    transition-property: all;
+    transition-duration: 1ms;
+    transition-timing-function: linear;
+    /* transition-delay: 0; */
+}
+li:hover{
+    background-color: rgb(244, 248, 253);
+}
+li:active{
+    /* transition-delay: 0; */
+    background-color: rgb(207, 226, 250);
+}
 /* Contents style in main */
 main{
     /* Layout of friend list is designed by flex box */
@@ -53,63 +204,3 @@ li > img{
     padding-top: 0.625rem;
 }
 </style>
-
-<html lang="eng" data-dark="false">
-    <head>
-        <meta charset="utf-8">
-        <title>Simple Encrypt Chatting</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-        <meta http-equiv="X-UA-Compatible" content="IE-edge">
-        <meta name="description" content="Simple Encrypt Chatting New Friend View">
-        <meta name="keywords" content="Chatting, Encrypt">
-        <meta name="robotos" content="noindex, nofollow">
-        <link rel="stylesheet" href="CSS/main-layout.css">
-        <link rel="stylesheet" href="CSS/general.css">
-        <link rel="stylesheet" href="fontello/css/fontello.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <div id="content">
-            <!-- we should add newfriend button -->
-            <header>
-                <h1>ADD FRIENDS</h1>
-            </header>
-            <!-- style-->
-            <nav>           
-            </nav>
-            <!-- Main -->
-            <main>
-                <!-- My Profile -->
-                <div>
-                    <ul>
-                        <li>
-                            <form name="searchingform" >
-                                <input type="text" class="new_friend" name="name" alt="EnterName" placeholder="NAME" required>
-                                <input type="submit" class="signupbutton" value="Enter" alt="signupBtn">
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-                <!-- Each profile Directly connec to chat room-->
-                <div>
-                    <div class="profile-title">
-                        <h2>VALID</h2>
-                    </div>
-                    <!--If there is valid users-->
-                    <ul>
-                        <li>
-                            <button>
-                                <img src="./pic/default.png">
-                            <div class="profile">
-                                <p>Ellie</p>
-                            </div> 
-                            </button>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </main>
-        </div>
-    </body>
-</html>
