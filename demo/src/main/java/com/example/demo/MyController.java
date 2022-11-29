@@ -22,7 +22,6 @@ public class MyController {
     @CrossOrigin
     @GetMapping
     public boolean verifyUser(@RequestParam String username, @RequestParam String password) {
-        
         String query = "SELECT * from Users where username = " + "\"" + username + "\"" + "and password = " +  "\"" + password + "\"";
         System.out.println(query);
         Statement statement;
