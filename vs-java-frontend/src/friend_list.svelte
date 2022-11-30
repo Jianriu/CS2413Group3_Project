@@ -1,7 +1,6 @@
 <script>
 import AddList from './add_friend.svelte';
 import ChatRoom from './chat_room.svelte'
-
 let userimgsrc = "./vs-java-frontend/src/images/user.png";
 let addNewVis = false;
 let chatVis = false;

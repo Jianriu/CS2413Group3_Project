@@ -1,20 +1,17 @@
 <script>
 	export let name;
+    //sign up vars
+    let sign_name = "";
+    let sign_email = "";
+    let sign_id = "";
+    let sign_pass = "";
+    
+    //login vars
     let username;
     let pass;
     let result = null
-    import {fade} from 'svelte/transition';
     let signVisible = false;
     let listpageVisible = false;
-	async function loadData(){
-				let response = await fetch("http://localhost:8080",{
-					method: 'GET'
-				});
-				console.log(response)
-				name = await response.text();
-
-	}
-	loadData();
 
     //Sends request to the backend server at localhost:5000. This url path is mapped to MyController.java 
     async function login(){
@@ -30,6 +27,24 @@
             alert('wrong username and password');
         }
     }
+    
+    async function signup(username,name,pass,email){
+    let path = "http://localhost:5000/signup"
+    const res = await fetch(path,{
+        method: 'POST',
+        body: JSON.stringify({
+            username: username,
+            fullname: name,
+            password: pass,
+            email: email,
+        }),
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+    let result = await res.json()
+    return result;
+}
 
 
     import FriendList from './friend_list.svelte';
@@ -65,12 +80,12 @@
                         <p>SIGN UP</p>
                     </header>
                     <section class="signup_form" id="signup_form">
-                        <form name="signupform" action="index.html" >
-                            <input type="text" class="new_info" name="name" alt="EnterName" placeholder="NAME" required>
-                            <input type="text" class="new_info" name="email" alt="EnterEmailS" placeholder="EMAIL" required>
-                            <input type="text" class="new_info" name="id" alt="EnterID" placeholder="ID" required>
-                            <input type="password" class="new_info" name="pwd" alt="EnterPW" placeholder="PASSWORD" required>
-                            <input type="submit" class="signupbutton" value="Enter" alt="signupBtn">
+                        <form name="signupform" >
+                            <input bind:value = {sign_name} type="text" class="new_info" name="name" alt="EnterName" placeholder="NAME" required>
+                            <input bind:value = {sign_email} type="text" class="new_info" name="email" alt="EnterEmail" placeholder="EMAIL" required>
+                            <input bind:value = {sign_id} type="text" class="new_info" name="id" alt="EnterID" placeholder="ID" required>
+                            <input bind:value = {sign_pass} type="text" class="new_info" name="pwd" alt="EnterPW" placeholder="PASSWORD" required>
+                            <button type="submit" on:click = {signup(sign_id,sign_name,sign_pass,sign_email).then(res => console.log(res))}>Sign Up</button>
                         </form>
                     </section>
                 </div>
