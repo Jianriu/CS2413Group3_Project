@@ -10,4 +10,7 @@ CREATE TABLE `CS2413`.`Users` (
 ALTER TABLE `CS2413`.`Users` 
 ADD COLUMN `email` VARCHAR(45) NOT NULL AFTER `password`,
 CHANGE COLUMN `fullName` `fullname` VARCHAR(45) NOT NULL ;
+
+ALTER TABLE `CS2413`.`Users` 
+CHANGE COLUMN `password` `password` VARCHAR(80) NOT NULL ;
   
