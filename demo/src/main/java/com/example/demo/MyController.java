@@ -2,6 +2,7 @@ package com.example.demo;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,11 +19,19 @@ public class MyController {
     //creates a db connection
     DemoApplication app = new DemoApplication();
     Connection connection = app.initDatabase();
-
+    Hash hash = new Hash();
     @CrossOrigin
     @GetMapping
     public boolean verifyUser(@RequestParam String username, @RequestParam String password) {
-        String query = "SELECT * from Users where username = " + "\"" + username + "\"" + "and password = " +  "\"" + password + "\"";
+        String hashedPass = "";
+        try {
+            hashedPass = hash.toHexString(hash.getSHAvalue(password));  
+        } catch (NoSuchAlgorithmException e) {
+            // TODO: handle exception
+            e.printStackTrace();
+        }
+
+        String query = "SELECT * from Users where username = " + "\"" + username + "\"" + "and password = " +  "\"" + hashedPass + "\"";
         System.out.println(query);
         Statement statement;
         ResultSet rs = null;
