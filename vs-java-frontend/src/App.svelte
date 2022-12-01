@@ -1,5 +1,5 @@
 <script>
-	export let name;
+	//export let name;
     //sign up vars
     let sign_name = "";
     let sign_email = "";
@@ -22,6 +22,7 @@
         result = await res.text()
         if(result == "true"){
             listpageVisible = true;
+            currName = username;
         }
         else{
             alert('wrong username and password');
@@ -96,7 +97,7 @@
 {/if}
 <!--Friend List PAGE-->
 {#if listpageVisible}
-    <FriendList/>
+    <FriendList myname= {username}/>
 {/if}    
 
 
