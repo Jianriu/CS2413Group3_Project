@@ -1,5 +1,6 @@
 <script>    
     export let friendName = "";
+	export let myName;
 	import { beforeUpdate, afterUpdate } from 'svelte';
 
 	let div;
@@ -34,7 +35,7 @@
 
 	//receive the chat
 	async function sendChat(t){
-        let path = "http://localhost:5000/chatting?&text="+t
+        let path = "http://localhost:5000/chatting?&username="+t+"&fname="+friendName+"&text="+t
         const res = await fetch(path,{
             method: 'GET'
         })
@@ -50,23 +51,6 @@
 		//receiveMsg();
 	}
 
-	//receive the chat
-	async function receiveMsg(){
-		let path = "http://localhost:5000/chatting"
-		const res = await fetch(path,{
-            method: 'GET'
-        })
-        let result = await res.text()
-		console.log(result)
-		//console.log(result);
-		if(result != null){
-			comments = comments.concat({
-				author: 'friend',
-				text: result
-			});
-		}
-		
-    }
 	
 </script>
 
@@ -126,6 +110,7 @@
 		color : rgb(228, 233, 230);
 		border-radius: 1em 1em 1em 0;
 		margin-left: 1em;
+		max-width: 150rem;
 	}
 
 	.user span {

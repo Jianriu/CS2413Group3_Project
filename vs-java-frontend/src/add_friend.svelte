@@ -184,11 +184,6 @@ li{
     padding-bottom: 0.4375rem;
     padding-top: 0.4375rem;
 }
-li > img{
-    /* resize profile pic */
-    width: 3.125rem;
-}
-
 .profile > *{
     /* control margin of name and profile pic */
     margin: 0.3125rem; /* 5px (16px 브라우저 기준) */
