@@ -14,7 +14,7 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);	
 		ChatServer.start();
 	}
-
+	
 	//Creates the DB connection
 	public Connection initDatabase(){
 		String url = "jdbc:mysql://localhost:3306/CS2413";
@@ -34,5 +34,6 @@ public class DemoApplication {
 		System.out.println("Connect Success :D");
 		return connection;
 	}
+
 
 }

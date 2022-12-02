@@ -7,23 +7,10 @@
     export let myname;
     
     let friendname = "";
-
-    async function createChat(fName){   //who to connect with
+    
+    function handler(fname){
         chatVis = !chatVis;
-        friendname = fName;
-
-        //let path = "http://localhost:5000/startChat"
-        let path = "http://localhost:5000/startChat?&username="+myname+"&friendname="+fName
-        const res = await fetch(path,{
-            method: 'GET'
-        })
-        let result = await res.text()
-        if(result == "true"){
-			console.log("send succesfully")
-        }
-        else{
-            alert('error');
-        }
+        friendname = fname;
     }
 
    
@@ -64,7 +51,7 @@
                     </div>
                     <ul>
                         <!--connect to the db-->
-                        <button on:click={() => createChat("Ellie")}>
+                        <button on:click={() => handler("Ellie")}>
                             <li>
                                 <!-- svelte-ignore a11y-missing-attribute -->
                                 <img {userimgsrc} />
@@ -73,7 +60,7 @@
                                 </div>
                             </li>
                         </button>
-                        <button on:click={() => createChat("Florence")}>
+                        <button on:click={() => handler("Florence")}>
                             <li>
                                 <!-- svelte-ignore a11y-missing-attribute -->
                                 <img {userimgsrc} />
@@ -82,7 +69,7 @@
                                 </div>
                             </li>
                         </button>
-                        <button>
+                        <button on:click={() => handler("Kate")}>
                             <li>
                                 <!-- svelte-ignore a11y-missing-attribute -->
                                 <img {userimgsrc} />
@@ -91,7 +78,7 @@
                                 </div>
                             </li>
                         </button>
-                        <button>
+                        <button on:click={() => handler("Halo")}>
                             <li>
                                 <!-- svelte-ignore a11y-missing-attribute -->
                                 <img {userimgsrc} />
@@ -110,7 +97,7 @@
     <AddList />
 {/if}
 {#if chatVis}
-    <ChatRoom friendName={friendname} />
+    <ChatRoom friendName={friendname} myName={myname}/>
 {/if}
 
 <style>

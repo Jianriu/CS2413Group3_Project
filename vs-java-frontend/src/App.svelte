@@ -15,7 +15,7 @@
 
     //Sends request to the backend server at localhost:5000. This url path is mapped to MyController.java 
     async function login(){
-        let path = "http://localhost:5000/users?username="+ username +"&password="+pass
+        {let path = "http://localhost:5000/users?username="+ username +"&password="+pass
         const res = await fetch(path,{
             method: 'GET'
         })
@@ -26,7 +26,7 @@
         }
         else{
             alert('wrong username and password');
-        }
+        }}
     }
     
     async function signup(username,name,pass,email){
@@ -45,7 +45,7 @@
     })
     let result = await res.json()
     return result;
-}
+    }
 
 
     import FriendList from './friend_list.svelte';
