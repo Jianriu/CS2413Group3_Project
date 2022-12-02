@@ -44,6 +44,9 @@
         }
     })
     let result = await res.json()
+    if(!result){
+        alert("username and/or password must be filled")
+    }
     return result;
     }
 

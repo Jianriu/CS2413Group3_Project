@@ -28,10 +28,12 @@ public class SignupController {
             // TODO: handle exception
             e.printStackTrace();
         }
-       
+       if(user.getUsername() == "" || user.getPassword() == ""){
+            return false; 
+       }
         String query = "INSERT INTO Users (fullname,username,password,email) VALUES ("
          + "\"" + user.getFullname() + "\"," 
-         + "\"" + user.getFullname() + "\"," 
+         + "\"" + user.getUsername() + "\"," 
          + "\"" + hashedPass + "\"," 
          + "\"" + user.getEmail() + "\"" + ")";
          System.out.println(query);
