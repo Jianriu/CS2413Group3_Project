@@ -37,7 +37,7 @@
                 <div>
                     <ul>
                         <li>
-                            <img src="/images/me.png" alt="MyprofilePic" />
+                            <!-- <img src="/images/me.png" alt="MyprofilePic" /> -->
                             <div class="profile">
                                 <p>{myname}</p>
                             </div>

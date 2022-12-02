@@ -25,11 +25,23 @@
             currName = username;
         }
         else{
-            alert('wrong username and password');
+            alert('Incorrect username and/or password');
         }}
     }
     
     async function signup(username,name,pass,email){
+    if(name.length < 1){
+        alert("Name field cannot be blank")
+        return;
+    }
+    if(email.length < 1){
+        alert("Email field cannot be blank")
+        return;
+    }
+    if(pass.length < 6){
+        alert("password is too short!")
+        return;
+    }
     let path = "http://localhost:5000/signup"
     const res = await fetch(path,{
         method: 'POST',
@@ -45,7 +57,7 @@
     })
     let result = await res.json()
     if(!result){
-        alert("username and/or password must be filled")
+        alert("username and/or password cannot be blank")
     }
     return result;
     }
