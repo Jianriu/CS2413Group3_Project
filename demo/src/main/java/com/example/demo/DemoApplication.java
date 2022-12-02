@@ -11,14 +11,15 @@ import java.sql.SQLException;
 public class DemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(DemoApplication.class, args);	
+		ChatServer.start();
 	}
 
 	//Creates the DB connection
 	public Connection initDatabase(){
 		String url = "jdbc:mysql://localhost:3306/CS2413";
 		String user = "root";
-		String password = "GRMT#1092";
+		String password = "metis1025";
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
